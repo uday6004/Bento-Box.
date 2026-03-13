@@ -1,0 +1,109 @@
+/* --- THEME DESIGN SYSTEM --- */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --accent-glow: #38bdf8;
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    --grid-gap: 1.5rem;
+    --card-padding: 1.5rem;
+}
+
+/* --- BOX MODEL & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    padding: 2rem;
+}
+
+/* --- FLEXBOX NAVIGATION --- */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #334155;
+}
+
+/* --- ADVANCED CSS GRID (Bento Layout) --- */
+.bento-grid {
+    display: grid;
+    gap: var(--grid-gap);
+    /* Creates a 4-column layout by default */
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 150px;
+}
+
+.item {
+    background: var(--card-bg);
+    padding: var(--card-padding);
+    border-radius: 16px;
+    border: 1px solid #334155;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* --- GRID SPANNING (The "Bento" Magic) --- */
+.featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: linear-gradient(135deg, #1e293b 0%, #0c4a6e 100%);
+    border: 1px solid var(--accent-glow);
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+.tall {
+    grid-row: span 2;
+}
+
+/* --- FLEXBOX INTERNAL ALIGNMENT --- */
+.metric {
+    align-items: center;
+    text-align: center;
+}
+
+.metric strong {
+    font-size: 2rem;
+    color: var(--accent-glow);
+}
+
+.status-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.status-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #334155;
+    font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+    .featured, .wide, .tall {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+}
